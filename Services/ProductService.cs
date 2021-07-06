@@ -7,30 +7,33 @@ namespace OrderFullfillment.Services
 {
     public class ProductService : BaseService, IProductService
     {
-        private IRepository<Basket> _repository;
+        private readonly IRepository<Product> _repository;
         
-        public ProductService(IUnitOfWork unitOfWork, IRepository<Order> repository) : base(unitOfWork)
+        public ProductService(IUnitOfWork unitOfWork, IRepository<Product> repository) : base(unitOfWork)
         {
+            _repository = repository;
         }
 
-        public Task<Product> Get(int id)
+        public async Task<Product> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return await _repository.GetAsync(id);
         }
-
-        public Task<Product> Create()
+        
+        public async Task<Product> Add(Product product)
         {
-            throw new System.NotImplementedException();
+            _repository.Add(product);
+            await UnitOfWork.CommitAsync();
+            return product;
         }
-
-        public Task Add(Product product)
+        
+        public async Task Remove(int id)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Remove(Product product)
-        {
-            throw new System.NotImplementedException();
+            var product = await _repository.GetAsync(id);
+            if (product != null)
+            {
+                _repository.Delete(product);
+                await UnitOfWork.CommitAsync();
+            }
         }
     }
 }

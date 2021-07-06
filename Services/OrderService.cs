@@ -8,19 +8,23 @@ namespace OrderFullfillment.Services
     public class OrderService : BaseService, IOrderService
     {
         private IRepository<Order> _repository;
-        
+
         public OrderService(IUnitOfWork unitOfWork, IRepository<Order> repository) : base(unitOfWork)
         {
         }
-        
+
         public async Task<Order> Get(int id)
         {
             return await _repository.GetAsync(id);
         }
 
-        public async Task Add(Order order)
+        public async Task CreateOrder(string customerName, string customerAddress, Basket basket)
         {
-            _repository.Add(order);
+            var order = new Order(customerName, customerAddress);
+            foreach (var item in basket.Products)
+            {
+                order.Products.Add(new OrderProductItem(item.Product, item.Product.Price, item.Quantity));
+            }
             await UnitOfWork.CommitAsync();
         }
 

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using OrderFullfillment.Entities;
 using OrderFullfillment.SeedWorks;
@@ -7,30 +8,55 @@ namespace OrderFullfillment.Services
 {
     public class BasketService : BaseService, IBasketService
     {
-        private IRepository<Basket> _repository;
-        
-        public BasketService(IUnitOfWork unitOfWork, IRepository<Order> repository) : base(unitOfWork)
+        private readonly IRepository<Basket> _basketRepo;
+        private readonly IRepository<Product> _productRepo;
+
+        public BasketService(IUnitOfWork unitOfWork, IRepository<Basket> basketRepo, IRepository<Product> productRepo) : base(unitOfWork)
         {
+            _basketRepo = basketRepo;
+            _productRepo = productRepo;
         }
 
-        public Task<Basket> Get(int id)
+        public async Task<Basket> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return await _basketRepo.GetAsync(id);
         }
 
-        public Task<Basket> Create()
+        public async Task<Basket> Create()
         {
-            throw new System.NotImplementedException();
+            var basket = new Basket();
+            _basketRepo.Add(basket);
+            await UnitOfWork.CommitAsync();
+            return basket;
         }
 
-        public Task Add(Product product)
+        public async Task AddItem(int basketId, int productId)
         {
-            throw new System.NotImplementedException();
+            var basket = await _basketRepo.GetAsync(basketId);
+            var productItem = basket.Products.FirstOrDefault(_ => _.Product.Id == productId);
+            if (productItem == null)
+            {
+                var product = await _productRepo.GetAsync(productId);
+                productItem = new BasketProductItem(product);
+                basket.Products.Add(productItem);
+            }
+            else
+            {
+                productItem.Quantity += 1;
+            }
+
+            await UnitOfWork.CommitAsync();
         }
 
-        public Task Remove(Product product)
+        public async Task RemoveItem(int basketId, int productId)
         {
-            throw new System.NotImplementedException();
+            var basket = await _basketRepo.GetAsync(basketId);
+            var productItem = basket.Products.FirstOrDefault(_ => _.Product.Id == productId);
+            if (productItem != null)
+            {
+                basket.Products.Remove(productItem);
+                await UnitOfWork.CommitAsync();
+            }
         }
     }
 }
