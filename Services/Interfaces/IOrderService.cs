@@ -1,12 +1,14 @@
 using System.Threading.Tasks;
 using OrderFullfillment.Entities;
+using OrderFullfillment.ViewModels;
+using OrderFullfillment.ViewModels.Order;
 
 namespace OrderFullfillment.Services.Interfaces
 {
     public interface IOrderService
     {
         public Task<Order> Get(int id);
-        public Task CreateOrder(string customerName, string customerAddress, int basketId);
+        public Task<Order> CreateOrder(OrderReqVM orderInfo);
         public Task UpdateStatus(int orderId, OrderStatus status);
     }
 }
