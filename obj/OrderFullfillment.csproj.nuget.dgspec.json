@@ -1,27 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chuong.tran\\Desktop\\order-fullfillment-solid-practice\\OrderFullfillment.csproj": {}
+    "/Users/tridentoc/Desktop/OrderFullfillment/OrderFullfillment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chuong.tran\\Desktop\\order-fullfillment-solid-practice\\OrderFullfillment.csproj": {
+    "/Users/tridentoc/Desktop/OrderFullfillment/OrderFullfillment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chuong.tran\\Desktop\\order-fullfillment-solid-practice\\OrderFullfillment.csproj",
+        "projectUniqueName": "/Users/tridentoc/Desktop/OrderFullfillment/OrderFullfillment.csproj",
         "projectName": "OrderFullfillment",
-        "projectPath": "C:\\Users\\chuong.tran\\Desktop\\order-fullfillment-solid-practice\\OrderFullfillment.csproj",
-        "packagesPath": "C:\\Users\\chuong.tran\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chuong.tran\\Desktop\\order-fullfillment-solid-practice\\obj\\",
+        "projectPath": "/Users/tridentoc/Desktop/OrderFullfillment/OrderFullfillment.csproj",
+        "packagesPath": "/Users/tridentoc/.nuget/packages/",
+        "outputPath": "/Users/tridentoc/Desktop/OrderFullfillment/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\chuong.tran\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/tridentoc/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -10,6 +10,10 @@ namespace OrderFullfillment.Entities
         public Product Product { get; set; }
         public int Quantity { get; set; }
 
+        public BasketProductItem()
+        {
+        }
+
         public BasketProductItem(Product product)
         {
             Product = product;

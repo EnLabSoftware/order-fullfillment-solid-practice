@@ -29,7 +29,7 @@ namespace OrderFullfillment
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "OderFullfillment", Version = "v1"});
             });
-            services.AddDbContext<AppDbContext>(options => options.UseSqlite($""));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlite(_configuration["ConnectionString"]));
 
             services
                 .AddScoped<IUnitOfWork, UnitOfWork>()

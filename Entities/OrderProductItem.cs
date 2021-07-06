@@ -10,6 +10,10 @@ namespace OrderFullfillment.Entities
         public long Price { get; set; }
         public int Quantity { get; set; }
 
+        public OrderProductItem()
+        {
+        }
+
         public OrderProductItem(Product product, long price, int quantity)
         {
             Product = product;

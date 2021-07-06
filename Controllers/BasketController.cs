@@ -22,8 +22,15 @@ namespace OrderFullfillment.Controllers
         [HttpGet("{id}")]
         public async Task<Basket> Get(int id)
         {
-            _logger.LogInformation($"Getting order id {id}");
+            _logger.LogInformation($"Getting basket id {id}");
             return await _basketService.Get(id);
+        }
+        
+        [HttpPost("{id:int}/add-item")]
+        public async Task Add(int id, int productId)
+        {
+            _logger.LogInformation($"Add item basket id {id}");
+            await _basketService.AddItem(id, productId);
         }
     }
 }

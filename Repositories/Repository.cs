@@ -6,12 +6,12 @@ namespace OrderFullfillment.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _dbContext;
+        private readonly AppDbContext _dbContext;
         private DbSet<T> _dbSet;
 
         private DbSet<T> DbSet => _dbSet ??= _dbContext.Set<T>();
 
-        public Repository(DbContext dbContext)
+        public Repository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
