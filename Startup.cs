@@ -5,9 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using OderFullfillmentSolidPractice.Repositories;
 using OrderFullfillment.Repositories;
 using OrderFullfillment.SeedWorks;
+using OrderFullfillment.Services;
+using OrderFullfillment.Services.Interfaces;
 
 namespace OrderFullfillment
 {
@@ -15,10 +16,10 @@ namespace OrderFullfillment
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,7 +33,10 @@ namespace OrderFullfillment
 
             services
                 .AddScoped<IUnitOfWork, UnitOfWork>()
-                .AddScoped(typeof(IRepository<>), typeof(Repository<>));
+                .AddScoped(typeof(IRepository<>), typeof(Repository<>))
+                .AddScoped<IBasketService, BasketService>()
+                .AddScoped<IOrderService, OrderService>()
+                .AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

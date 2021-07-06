@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OrderFullfillment.Entities;
 using OrderFullfillment.Services.Interfaces;
+using OrderFullfillment.ViewModels;
+using OrderFullfillment.ViewModels.Order;
 
 namespace OrderFullfillment.Controllers
 {
@@ -19,11 +21,18 @@ namespace OrderFullfillment.Controllers
             _orderService = orderService;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<Order> Get(int id)
         {
-            _logger.LogInformation($"Getting order id {id}");
+            _logger.LogInformation("Getting order id {Id}", id);
             return await _orderService.Get(id);
+        }
+        
+        [HttpPost]
+        public async Task<Order> Create(OrderReqVM orderInfo)
+        {
+            _logger.LogInformation("Creating order!");
+            return await _orderService.CreateOrder(orderInfo);
         }
     }
 }
