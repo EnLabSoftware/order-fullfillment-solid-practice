@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OrderFullfillment.SeedWorks;
 
 namespace OrderFullfillment.Repositories
@@ -17,8 +18,31 @@ namespace OrderFullfillment.Repositories
         {
             return _appDbContext.SaveChangesAsync();
         }
+        
+        public async Task<TResult> ExecuteTransactionAsync<TResult>(Func<Task<TResult>> func)
+        {
+            var strategy = _appDbContext.Database.CreateExecutionStrategy();
+            var transResult = await strategy.ExecuteAsync(async () =>
+            {
+                using (var trans = await _appDbContext.Database.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        var result = await func.Invoke();
+                        await trans.CommitAsync();
+                        return result;
+                    }
+                    catch (Exception)
+                    {
+                        await trans.RollbackAsync();
+                        throw;
+                    }
+                }
+            });
+            return transResult;
+        }
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         private void Dispose(bool disposing)
         {

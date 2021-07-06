@@ -58,5 +58,12 @@ namespace OrderFullfillment.Services
                 await UnitOfWork.CommitAsync();
             }
         }
+
+        public async Task MarkedAsResolved(int basketId)
+        {
+            var basket = await _basketRepo.GetAsync(basketId);
+            basket.IsResolved = true;
+            await UnitOfWork.CommitAsync();
+        }
     }
 }
