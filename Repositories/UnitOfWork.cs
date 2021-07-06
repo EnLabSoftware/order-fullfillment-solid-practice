@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using OrderFullfillment.Repositories;
 using OrderFullfillment.SeedWorks;
 
-namespace OderFullfillmentSolidPractice.Repositories
+namespace OrderFullfillment.Repositories
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public sealed class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
 
         public UnitOfWork(AppDbContext appDbContext)
         {
@@ -19,15 +18,15 @@ namespace OderFullfillmentSolidPractice.Repositories
             return _appDbContext.SaveChangesAsync();
         }
 
-        private bool disposed = false;
+        private bool _disposed = false;
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            if (!disposed && disposing)
+            if (!_disposed && disposing)
             {
                 _appDbContext.Dispose();
             }
-            disposed = true;
+            _disposed = true;
         }
         
         public void Dispose()
