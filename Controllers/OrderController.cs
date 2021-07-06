@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OrderFullfillment.Entities;
 using OrderFullfillment.Services.Interfaces;
-using OrderFullfillment.ViewModels;
 using OrderFullfillment.ViewModels.Order;
 
 namespace OrderFullfillment.Controllers
@@ -29,7 +28,7 @@ namespace OrderFullfillment.Controllers
         }
         
         [HttpPost]
-        public async Task<Order> Create(OrderReqVM orderInfo)
+        public async Task<Order> CreateOrder(OrderReqVM orderInfo)
         {
             _logger.LogInformation("Creating order!");
             return await _orderService.CreateOrder(orderInfo);

@@ -22,9 +22,9 @@ namespace OrderFullfillment.Services
             return await _basketRepo.GetAsync(id);
         }
 
-        public async Task<Basket> Create()
+        public async Task<Basket> Create(int userId)
         {
-            var basket = new Basket();
+            var basket = new Basket(userId);
             _basketRepo.Add(basket);
             await UnitOfWork.CommitAsync();
             return basket;

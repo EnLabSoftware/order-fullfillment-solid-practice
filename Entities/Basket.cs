@@ -7,7 +7,13 @@ namespace OrderFullfillment.Entities
     [Table("Basket")]
     public class Basket : EntityBase<int>
     {
+        public int UserId { get; set; }
         public bool IsResolved { get; set; }
         public virtual ICollection<BasketProductItem> Products { get; set; }
+
+        public Basket(int userId)
+        {
+            UserId = userId;
+        }
     }
 }

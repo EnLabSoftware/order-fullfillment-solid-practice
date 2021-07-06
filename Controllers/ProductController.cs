@@ -25,5 +25,12 @@ namespace OrderFullfillment.Controllers
             _logger.LogInformation($"Getting order id {id}");
             return await _productService.Get(id);
         }
+        
+        [HttpPost]
+        public async Task<Product> Create([FromBody] Product product)
+        {
+            _logger.LogInformation($"Add product");
+            return await _productService.Add(product);
+        }
     }
 }
