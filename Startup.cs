@@ -6,9 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OrderFullfillment.Repositories;
-using OrderFullfillment.SeedWorks;
-using OrderFullfillment.Services;
-using OrderFullfillment.Services.Interfaces;
 
 namespace OrderFullfillment
 {

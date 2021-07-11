@@ -15,4 +15,23 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="OrderFullfillment.API\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.API\appsettings.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.API\obj\OrderFullfillment.API.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.API\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.API\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.API\Properties\launchSettings.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.Entities\obj\OrderFullfillment.Entities.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.Entities\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="OrderFullfillment.Entities\obj\project.packagespec.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers" />
+      <Folder Include="Entities\Basket" />
+      <Folder Include="Entities\Invoice" />
+      <Folder Include="Entities\Order" />
+    </ItemGroup>
+
 </Project>
