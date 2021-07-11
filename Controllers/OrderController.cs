@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OrderFullfillment.Entities;
+using OrderFullfillment.Entities.Order;
 using OrderFullfillment.Services.Interfaces;
 using OrderFullfillment.ViewModels.Order;
 

@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using OrderFullfillment.SeedWorks;
 
-namespace OrderFullfillment.Entities
+namespace OrderFullfillment.Entities.Basket
 {
     [Table("BasketProductItem")]
     public class BasketProductItem : EntityBase<int>

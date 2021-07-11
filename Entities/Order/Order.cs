@@ -3,21 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using OrderFullfillment.SeedWorks;
 
-namespace OrderFullfillment.Entities
+namespace OrderFullfillment.Entities.Order
 {
     [Table("Order")]
     public class Order : EntityBase<int>
     {
-        public string CustomerName { get; set; }
-        public string Address { get; set; }
+        public string CustomerId { get; }
+        public string Address { get; }
         public OrderStatus Status { get; set; }
-        public virtual ICollection<OrderProductItem> Products { get; set; }
+        public ICollection<OrderProductItem> Products { get; set; }
 
         public long Total() => Products.Sum(_ => _.Price * _.Quantity);
 
-        public Order(string customerName, string address)
+        public Order(string customerId, string address)
         {
-            CustomerName = customerName;
+            CustomerId = customerId;
             Address = address;
             Status = OrderStatus.Created;
             Products = new List<OrderProductItem>();

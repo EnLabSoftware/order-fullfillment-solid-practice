@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using OrderFullfillment.Entities;
+using OrderFullfillment.Entities.Basket;
+using OrderFullfillment.Entities.Order;
 using OrderFullfillment.SeedWorks;
 using OrderFullfillment.Services.Interfaces;
 using OrderFullfillment.ViewModels;

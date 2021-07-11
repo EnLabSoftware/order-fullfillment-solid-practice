@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using OrderFullfillment.Entities;
+using OrderFullfillment.Entities.Basket;
 using OrderFullfillment.SeedWorks;
 using OrderFullfillment.Services.Interfaces;
 

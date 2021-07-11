@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using OrderFullfillment.Entities;
+using OrderFullfillment.Entities.Basket;
 
 namespace OrderFullfillment.Services.Interfaces
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using OrderFullfillment.SeedWorks;
 
-namespace OrderFullfillment.Entities
+namespace OrderFullfillment.Entities.Order
 {
     [Table("OrderProductItem")]
     public class OrderProductItem : EntityBase<int>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OrderFullfillment.Entities;
+using OrderFullfillment.Entities.Basket;
 using OrderFullfillment.Services.Interfaces;
 
 namespace OrderFullfillment.Controllers

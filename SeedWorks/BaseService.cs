@@ -1,10 +1,10 @@
 namespace OrderFullfillment.SeedWorks
 {
-    public class BaseService
+    public abstract class BaseService
     {
         protected readonly IUnitOfWork UnitOfWork;
 
-        public BaseService(IUnitOfWork unitOfWork)
+        protected BaseService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
         }
