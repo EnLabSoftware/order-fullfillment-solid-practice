@@ -4,6 +4,7 @@ using OrderFullfillment.Application.Services.Interfaces;
 using OrderFullfillment.Application.ViewModels.Order;
 using OrderFullfillment.Entity;
 using OrderFullfillment.Entity.Entities.Basket;
+using OrderFullfillment.Entity.Entities.Invoice;
 using OrderFullfillment.Entity.Entities.Order;
 using OrderFullfillment.Infrastructure.SeedWorks;
 
@@ -15,12 +16,21 @@ namespace OrderFullfillment.Application.Services
 
         private readonly IRepository<Order> _orderRepo;
         private readonly IRepository<Basket> _basketRepo;
+        private readonly IRepository<CompanyInvoice> _companyInvoice;
+        private readonly IRepository<PersonalInvoice> _personalInvoice;
 
-        public OrderService(IUnitOfWork unitOfWork, IBasketService basketService, IRepository<Order> orderRepo, IRepository<Basket> basketRepo) : base(unitOfWork)
+        public OrderService(IUnitOfWork unitOfWork, 
+            IBasketService basketService, 
+            IRepository<Order> orderRepo,
+            IRepository<Basket> basketRepo,
+            IRepository<CompanyInvoice> companyInvoice,
+            IRepository<PersonalInvoice> personalInvoice) : base(unitOfWork)
         {
             _orderRepo = orderRepo;
             _basketRepo = basketRepo;
             _basketService = basketService;
+            _companyInvoice = companyInvoice;
+            _personalInvoice = personalInvoice;
         }
 
         public async Task<Order> Get(int id)
@@ -36,7 +46,7 @@ namespace OrderFullfillment.Application.Services
             {
                 order.AddProductItem(item.Product, item.Quantity);
             }
-            
+
             await UnitOfWork.ExecuteTransactionAsync(async () =>
             {
                 _orderRepo.Add(order);
@@ -50,6 +60,20 @@ namespace OrderFullfillment.Application.Services
         {
             var order = await _orderRepo.GetAsync(orderId);
             order.Status = OrderStatus.Paid;
+            await UnitOfWork.CommitAsync();
+        }
+
+        public async void CreateInvoice(Order order)
+        {
+            switch (order.Type)
+            {
+                case OrderType.Company:
+                    _companyInvoice.Add(new CompanyInvoice(order, 111));
+                    break;
+                case OrderType.Personal:
+                    _personalInvoice.Add(new PersonalInvoice(order, 1));
+                    break;
+            }
             await UnitOfWork.CommitAsync();
         }
     }

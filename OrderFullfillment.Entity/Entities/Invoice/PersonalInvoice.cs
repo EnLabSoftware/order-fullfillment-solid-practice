@@ -6,10 +6,16 @@ namespace OrderFullfillment.Entity.Entities.Invoice
     public class PersonalInvoice : InvoiceBase
     {
         public int CustomerId { get; set; }
-        
+
+        public PersonalInvoice(Order.Order order, int customerId) : base(order)
+        {
+            CustomerId = customerId;
+        }
+
         public override string GenerateInvoice()
         {
-            return $"Generated invoice with {nameof(CustomerId)}: {CustomerId}";
+            //... do something
+            return $"Generated personal invoice with {nameof(CustomerId)}: {CustomerId}";
         }
     }
 }

@@ -6,5 +6,10 @@ namespace OrderFullfillment.Entity.Entities.Invoice
     {
         public Order.Order Order { get; set; }
         public abstract string GenerateInvoice();
+
+        protected InvoiceBase(Order.Order order)
+        {
+            Order = order;
+        }
     }
 }

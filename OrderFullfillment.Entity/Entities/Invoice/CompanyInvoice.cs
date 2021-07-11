@@ -5,12 +5,17 @@ namespace OrderFullfillment.Entity.Entities.Invoice
     [Table("CompanyInvoice")]
     public class CompanyInvoice : InvoiceBase
     {
-        public int CompanyId { get; set; }
         public int TaxNumber { get; set; }
-        
+
+        public CompanyInvoice(Order.Order order, int taxNumber) : base(order)
+        {
+            TaxNumber = taxNumber;
+        }
+
         public override string GenerateInvoice()
         {
-            return $"Generated invoice with {nameof(CompanyId)}: {CompanyId}, {nameof(TaxNumber)}: {TaxNumber}";
+            //... do something
+            return $"Generated company invoice with {nameof(TaxNumber)}: {TaxNumber}";
         }
     }
 }
