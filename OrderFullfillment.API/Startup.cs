@@ -5,9 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using OrderFullfillment.Repositories;
+using OrderFullfillment.Application.Services;
+using OrderFullfillment.Application.Services.Interfaces;
+using OrderFullfillment.Infrastructure;
+using OrderFullfillment.Infrastructure.SeedWorks;
 
-namespace OrderFullfillment
+namespace OrderFullfillment.API
 {
     public class Startup
     {

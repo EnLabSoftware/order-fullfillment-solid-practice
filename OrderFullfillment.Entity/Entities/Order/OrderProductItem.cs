@@ -6,18 +6,18 @@ namespace OrderFullfillment.Entity.Entities.Order
     [Table("OrderProductItem")]
     public class OrderProductItem : EntityBase<int>
     {
-        public Product Product { get; set; }
-        public long Price { get; set; }
-        public int Quantity { get; set; }
+        public Product Product { get; }
+        public long Price { get; }
+        public int Quantity { get; }
 
         public OrderProductItem()
         {
         }
 
-        public OrderProductItem(Product product, long price, int quantity)
+        public OrderProductItem(Product product, int quantity)
         {
             Product = product;
-            Price = price;
+            Price = product.Price;
             Quantity = quantity;
         }
     }

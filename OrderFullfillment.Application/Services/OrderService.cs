@@ -28,13 +28,13 @@ namespace OrderFullfillment.Application.Services
             return await _orderRepo.GetAsync(id);
         }
 
-        public async Task<Order> CreateOrder(OrderReqVM orderInfo)
+        public async Task<Order> CreateOrder(OrderRequestVM orderInfo)
         {
-            var order = new Order(orderInfo.CustomerName, orderInfo.Address);
+            var order = new Order(orderInfo.Type, orderInfo.CustomerName, orderInfo.Address);
             var basket = await _basketRepo.GetAsync(orderInfo.BasketId);
             foreach (var item in basket.Products)
             {
-                order.Products.Add(new OrderProductItem(item.Product, item.Product.Price, item.Quantity));
+                order.AddProductItem(item.Product, item.Quantity);
             }
             
             await UnitOfWork.ExecuteTransactionAsync(async () =>
@@ -46,10 +46,10 @@ namespace OrderFullfillment.Application.Services
             return order;
         }
 
-        public async Task UpdateStatus(int orderId, OrderStatus status)
+        public async Task MarkOrderAsPaid(int orderId)
         {
             var order = await _orderRepo.GetAsync(orderId);
-            order.Status = status;
+            order.Status = OrderStatus.Paid;
             await UnitOfWork.CommitAsync();
         }
     }

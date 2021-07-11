@@ -1,6 +1,6 @@
 namespace OrderFullfillment.Application.ViewModels.Order
 {
-    public class OrderResVM
+    public class OrderResponseVM
     {
         
     }

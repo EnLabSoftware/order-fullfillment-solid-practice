@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrderFullfillment.Entity.Entities.Invoice
@@ -9,14 +8,9 @@ namespace OrderFullfillment.Entity.Entities.Invoice
         public int CompanyId { get; set; }
         public int TaxNumber { get; set; }
         
-        public override void Generate()
+        public override string GenerateInvoice()
         {
-            Console.WriteLine("Company invoice generated");
-        }
-
-        public override void Print()
-        {
-            Console.WriteLine("Company invoice printed");
+            return $"Generated invoice with {nameof(CompanyId)}: {CompanyId}, {nameof(TaxNumber)}: {TaxNumber}";
         }
     }
 }

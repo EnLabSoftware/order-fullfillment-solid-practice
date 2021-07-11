@@ -28,9 +28,9 @@ namespace OrderFullfillment.API.Controllers
         }
         
         [HttpPost]
-        public async Task<Order> CreateOrder(OrderReqVM orderInfo)
+        public async Task<Order> CreateOrder(OrderRequestVM orderInfo)
         {
-            _logger.LogInformation("Creating order!");
+            _logger.LogInformation("Creating order");
             return await _orderService.CreateOrder(orderInfo);
         }
     }
