@@ -23,7 +23,7 @@ namespace OrderFullfillment.Application.Services
         {
             _companyInvoice = companyInvoice;
             _personalInvoice = personalInvoice;
-            _order = _order;
+            _order = order;
         }
 
         public async Task<int> CreateInvoice(Order order)
