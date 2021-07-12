@@ -12,6 +12,7 @@ namespace OrderFullfillment.Entity.Entities.Order
         public OrderStatus Status { get; set; }
         public string CustomerId { get; }
         public string Address { get; }
+        public int? InvoiceId { get; set; }
         public ICollection<OrderProductItem> Products { get; }
 
         public long Total() => Products.Sum(_ => _.Price * _.Quantity);

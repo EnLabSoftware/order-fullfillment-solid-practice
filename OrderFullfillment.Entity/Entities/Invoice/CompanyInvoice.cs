@@ -12,10 +12,10 @@ namespace OrderFullfillment.Entity.Entities.Invoice
             TaxNumber = taxNumber;
         }
 
-        public override string GenerateInvoice()
+        public override string ExportInvoice()
         {
             //... do something
-            return $"Generated company invoice with {nameof(TaxNumber)}: {TaxNumber}";
+            return $"Exported company invoice with {nameof(TaxNumber)}: {TaxNumber}";
         }
     }
 }

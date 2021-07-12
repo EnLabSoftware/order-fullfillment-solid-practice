@@ -36,7 +36,8 @@ namespace OrderFullfillment.API
                 .AddScoped(typeof(IRepository<>), typeof(Repository<>))
                 .AddScoped<IBasketService, BasketService>()
                 .AddScoped<IOrderService, OrderService>()
-                .AddScoped<IProductService, ProductService>();
+                .AddScoped<IProductService, ProductService>()
+                .AddScoped<IInvoiceService, InvoiceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

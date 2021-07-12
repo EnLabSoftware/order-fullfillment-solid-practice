@@ -13,24 +13,21 @@ namespace OrderFullfillment.Application.Services
     public class OrderService : BaseService, IOrderService
     {
         private readonly IBasketService _basketService;
+        private readonly IInvoiceService _invoiceService;
 
         private readonly IRepository<Order> _orderRepo;
         private readonly IRepository<Basket> _basketRepo;
-        private readonly IRepository<CompanyInvoice> _companyInvoice;
-        private readonly IRepository<PersonalInvoice> _personalInvoice;
 
         public OrderService(IUnitOfWork unitOfWork, 
             IBasketService basketService, 
             IRepository<Order> orderRepo,
             IRepository<Basket> basketRepo,
-            IRepository<CompanyInvoice> companyInvoice,
-            IRepository<PersonalInvoice> personalInvoice) : base(unitOfWork)
+            IInvoiceService invoiceService) : base(unitOfWork)
         {
             _orderRepo = orderRepo;
             _basketRepo = basketRepo;
             _basketService = basketService;
-            _companyInvoice = companyInvoice;
-            _personalInvoice = personalInvoice;
+            _invoiceService = invoiceService;
         }
 
         public async Task<Order> Get(int id)
@@ -60,21 +57,11 @@ namespace OrderFullfillment.Application.Services
         {
             var order = await _orderRepo.GetAsync(orderId);
             order.Status = OrderStatus.Paid;
-            await UnitOfWork.CommitAsync();
-        }
-
-        public async void CreateInvoice(Order order)
-        {
-            switch (order.Type)
+            await UnitOfWork.ExecuteTransactionAsync(async () =>
             {
-                case OrderType.Company:
-                    _companyInvoice.Add(new CompanyInvoice(order, 111));
-                    break;
-                case OrderType.Personal:
-                    _personalInvoice.Add(new PersonalInvoice(order, 1));
-                    break;
-            }
-            await UnitOfWork.CommitAsync();
+                order.InvoiceId = await _invoiceService.CreateInvoice(order);
+                return await UnitOfWork.CommitAsync();
+            });
         }
     }
 }
