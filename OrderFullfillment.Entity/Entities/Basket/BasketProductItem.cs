@@ -4,9 +4,9 @@ using OrderFullfillment.Entity.SeedWorks;
 namespace OrderFullfillment.Entity.Entities.Basket
 {
     [Table("BasketProductItem")]
-    public class BasketProductItem : EntityBase<int>
+    public class BasketProductItem : EntityBase
     {
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
         public int Quantity { get; set; }
 
         public BasketProductItem()

@@ -33,11 +33,19 @@ namespace OrderFullfillment.API.Controllers
             return await _basketService.Create(userId);
         }
         
-        [HttpPost("{id:int}/add-item")]
-        public async Task Add(int id, int productId)
+        [HttpPost("{id:int}/items")]
+        public async Task AddItem(int id, int productId)
         {
             _logger.LogInformation($"Add item basket id {id}");
             await _basketService.AddItem(id, productId);
+        }
+        
+        
+        [HttpDelete("{id:int}/items/{itemId:int}")]
+        public async Task RemoveItem(int id, int itemId)
+        {
+            _logger.LogInformation($"Remove basket item id {id}");
+            await _basketService.RemoveItem(id, itemId);
         }
     }
 }

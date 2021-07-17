@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using OrderFullfillment.Entity.Entities.Orders;
 
 namespace OrderFullfillment.Entity.Entities.Invoice
 {
@@ -7,7 +8,11 @@ namespace OrderFullfillment.Entity.Entities.Invoice
     {
         public int TaxNumber { get; set; }
 
-        public CompanyInvoice(Order.Order order, int taxNumber) : base(order)
+        public CompanyInvoice()
+        {
+        }
+
+        public CompanyInvoice(Order order, int taxNumber) : base(order)
         {
             TaxNumber = taxNumber;
         }

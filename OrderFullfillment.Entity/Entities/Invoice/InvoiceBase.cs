@@ -1,13 +1,18 @@
+using OrderFullfillment.Entity.Entities.Orders;
 using OrderFullfillment.Entity.SeedWorks;
 
 namespace OrderFullfillment.Entity.Entities.Invoice
 {
-    public abstract class InvoiceBase : EntityBase<int>
+    public abstract class InvoiceBase : EntityBase
     {
-        public Order.Order Order { get; set; }
+        public Order Order { get; set; }
         public abstract string ExportInvoice();
 
-        protected InvoiceBase(Order.Order order)
+        protected InvoiceBase()
+        {
+        }
+
+        protected InvoiceBase(Order order)
         {
             Order = order;
         }

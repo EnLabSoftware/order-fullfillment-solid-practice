@@ -29,7 +29,7 @@ namespace OrderFullfillment.Infrastructure
 
         public async Task<T> GetAsync(int id)
         {
-            return await DbSet.FirstOrDefaultAsync(_ => (_ as EntityBase<int>).Id == id);
+            return await DbSet.FirstOrDefaultAsync(_ => (_ as EntityBase).Id == id);
         }
 
         public void Update(T entity)

@@ -4,7 +4,7 @@ using OrderFullfillment.Application.SeedWorks;
 using OrderFullfillment.Application.Services.Interfaces;
 using OrderFullfillment.Entity;
 using OrderFullfillment.Entity.Entities.Invoice;
-using OrderFullfillment.Entity.Entities.Order;
+using OrderFullfillment.Entity.Entities.Orders;
 using OrderFullfillment.Infrastructure.SeedWorks;
 
 namespace OrderFullfillment.Application.Services

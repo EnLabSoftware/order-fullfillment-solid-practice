@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using OrderFullfillment.Application.ViewModels.Order;
-using OrderFullfillment.Entity.Entities.Order;
+using OrderFullfillment.Entity.Entities.Orders;
 
 namespace OrderFullfillment.Application.Services.Interfaces
 {

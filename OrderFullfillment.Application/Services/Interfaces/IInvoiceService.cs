@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using OrderFullfillment.Entity.Entities.Order;
+using OrderFullfillment.Entity.Entities.Orders;
 
 namespace OrderFullfillment.Application.Services.Interfaces
 {

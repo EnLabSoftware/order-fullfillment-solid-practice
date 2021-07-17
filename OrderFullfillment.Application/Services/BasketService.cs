@@ -50,10 +50,10 @@ namespace OrderFullfillment.Application.Services
             await UnitOfWork.CommitAsync();
         }
 
-        public async Task RemoveItem(int basketId, int productId)
+        public async Task RemoveItem(int basketId, int itemId)
         {
             var basket = await _basketRepo.GetAsync(basketId);
-            var productItem = basket.Products.FirstOrDefault(_ => _.Product.Id == productId);
+            var productItem = basket.Products.FirstOrDefault(_ => _.Id == itemId);
             if (productItem != null)
             {
                 basket.Products.Remove(productItem);
@@ -64,7 +64,7 @@ namespace OrderFullfillment.Application.Services
         public async Task MarkedAsResolved(int basketId)
         {
             var basket = await _basketRepo.GetAsync(basketId);
-            basket.IsResolved = true;
+            basket.IsCheckedOut = true;
             await UnitOfWork.CommitAsync();
         }
     }

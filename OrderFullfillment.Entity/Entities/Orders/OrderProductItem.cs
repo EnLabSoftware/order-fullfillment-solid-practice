@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using OrderFullfillment.Entity.SeedWorks;
 
-namespace OrderFullfillment.Entity.Entities.Order
+namespace OrderFullfillment.Entity.Entities.Orders
 {
     [Table("OrderProductItem")]
-    public class OrderProductItem : EntityBase<int>
+    public class OrderProductItem : EntityBase
     {
-        public Product Product { get; }
+        public virtual Product Product { get; }
         public long Price { get; }
         public int Quantity { get; }
 

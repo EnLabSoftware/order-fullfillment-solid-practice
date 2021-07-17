@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OrderFullfillment.Application.Services.Interfaces;
 using OrderFullfillment.Application.ViewModels.Order;
-using OrderFullfillment.Entity.Entities.Order;
+using OrderFullfillment.Entity.Entities.Orders;
 
 namespace OrderFullfillment.API.Controllers
 {

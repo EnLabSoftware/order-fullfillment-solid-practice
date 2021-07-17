@@ -5,10 +5,10 @@ using OrderFullfillment.Entity.SeedWorks;
 namespace OrderFullfillment.Entity.Entities.Basket
 {
     [Table("Basket")]
-    public class Basket : EntityBase<int>
+    public class Basket : EntityBase
     {
         public int UserId { get; set; }
-        public bool IsResolved { get; set; }
+        public bool IsCheckedOut { get; set; }
         public virtual ICollection<BasketProductItem> Products { get; set; }
 
         public Basket(int userId)

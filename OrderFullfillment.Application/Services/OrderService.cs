@@ -4,8 +4,7 @@ using OrderFullfillment.Application.Services.Interfaces;
 using OrderFullfillment.Application.ViewModels.Order;
 using OrderFullfillment.Entity;
 using OrderFullfillment.Entity.Entities.Basket;
-using OrderFullfillment.Entity.Entities.Invoice;
-using OrderFullfillment.Entity.Entities.Order;
+using OrderFullfillment.Entity.Entities.Orders;
 using OrderFullfillment.Infrastructure.SeedWorks;
 
 namespace OrderFullfillment.Application.Services

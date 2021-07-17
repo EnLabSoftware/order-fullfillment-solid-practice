@@ -4,7 +4,7 @@ using OrderFullfillment.Entity.SeedWorks;
 namespace OrderFullfillment.Entity.Entities
 {
     [Table("Product")]
-    public class Product : EntityBase<int>
+    public class Product : EntityBase
     {
         public int Name { get; set; }
         public long Price { get; set; }
