@@ -19,6 +19,13 @@ namespace OrderFullfillment.API.Controllers
             _invoiceService = invoiceService;
         }
 
+        [HttpPost("{orderId:int}")]
+        public async Task SignInvoice(int orderId)
+        {
+            _logger.LogInformation("Sign invoice with order id {Id}", orderId);
+            await _invoiceService.Sign(orderId);
+        }
+
         [HttpGet("{orderId:int}")]
         public async Task<string> ExportInvoice(int orderId)
         {

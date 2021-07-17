@@ -17,10 +17,15 @@ namespace OrderFullfillment.Entity.Entities.Invoice
             TaxNumber = taxNumber;
         }
 
-        public override string ExportInvoice()
+        public override void Sign()
         {
-            //... do something
-            return $"Exported company invoice with {nameof(TaxNumber)}: {TaxNumber}";
+            //... sign company invoice
+        }
+        
+        public override string Export()
+        {
+            //... exporting company invoice
+            return $"Exported company invoice with {nameof(TotalCost)}: {TotalCost}, {nameof(TaxNumber)}: {TaxNumber}";
         }
     }
 }

@@ -15,7 +15,7 @@ namespace OrderFullfillment.Entity.Entities.Orders
         public int? InvoiceId { get; set; }
         public virtual ICollection<OrderProductItem> Products { get; }
 
-        public long Total() => Products.Sum(_ => _.Price * _.Quantity);
+        public decimal Total() => Products.Sum(_ => _.Price * _.Quantity);
 
         public Order()
         {

@@ -44,6 +44,23 @@ namespace OrderFullfillment.Application.Services
                     throw new Exception("OrderType not exist");
             }
         }
+        
+        public async Task Sign(int orderId)
+        {
+            var order = await _order.GetAsync(orderId);
+            var invoiceId = order.InvoiceId.GetValueOrDefault();
+            InvoiceBase invoice = null;
+            switch (order.Type)
+            {
+                case OrderType.Company:
+                    invoice = await _companyInvoice.GetAsync(invoiceId);
+                    break;
+                case OrderType.Personal:
+                    invoice = await _personalInvoice.GetAsync(invoiceId);
+                    break;
+            }
+            invoice?.Sign();
+        }
 
         public async Task<string> Export(int orderId)
         {
@@ -59,7 +76,7 @@ namespace OrderFullfillment.Application.Services
                     invoice = await _personalInvoice.GetAsync(invoiceId);
                     break;
             }
-            return invoice?.ExportInvoice();
+            return invoice?.Export();
         }
     }
 }

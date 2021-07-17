@@ -13,11 +13,16 @@ namespace OrderFullfillment.Entity.Entities.Invoice
         public PersonalInvoice(Order order) : base(order)
         {
         }
-
-        public override string ExportInvoice()
+        
+        public override void Sign()
         {
-            //... do something
-            return $"Exported personal invoice";
+            //... sign personal invoice
+        }
+
+        public override string Export()
+        {
+            //... exporting personal invoice
+            return $"Exported personal invoice with {nameof(TotalCost)}: {TotalCost}";
         }
     }
 }
