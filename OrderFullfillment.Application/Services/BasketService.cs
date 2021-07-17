@@ -28,7 +28,7 @@ namespace OrderFullfillment.Application.Services
         {
             var basket = new Basket(userId);
             _basketRepo.Add(basket);
-            await UnitOfWork.CommitAsync();
+            await UnitOfWork.SaveChangeAsync();
             return basket;
         }
 
@@ -47,7 +47,7 @@ namespace OrderFullfillment.Application.Services
                 productItem.Quantity += 1;
             }
 
-            await UnitOfWork.CommitAsync();
+            await UnitOfWork.SaveChangeAsync();
         }
 
         public async Task RemoveItem(int basketId, int itemId)
@@ -57,7 +57,7 @@ namespace OrderFullfillment.Application.Services
             if (productItem != null)
             {
                 basket.Products.Remove(productItem);
-                await UnitOfWork.CommitAsync();
+                await UnitOfWork.SaveChangeAsync();
             }
         }
 
@@ -65,7 +65,7 @@ namespace OrderFullfillment.Application.Services
         {
             var basket = await _basketRepo.GetAsync(basketId);
             basket.IsCheckedOut = true;
-            await UnitOfWork.CommitAsync();
+            await UnitOfWork.SaveChangeAsync();
         }
     }
 }

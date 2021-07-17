@@ -5,7 +5,7 @@ namespace OrderFullfillment.Infrastructure.SeedWorks
 {
     public interface IUnitOfWork    
     {   
-        Task<int> CommitAsync();   
+        Task<int> SaveChangeAsync();   
 		Task<TResult> ExecuteTransactionAsync<TResult>(Func<Task<TResult>> func);
     }  
 }

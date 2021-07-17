@@ -14,7 +14,7 @@ namespace OrderFullfillment.Infrastructure
             _appDbContext = appDbContext;
         }
 
-        public Task<int> CommitAsync()
+        public Task<int> SaveChangeAsync()
         {
             return _appDbContext.SaveChangesAsync();
         }

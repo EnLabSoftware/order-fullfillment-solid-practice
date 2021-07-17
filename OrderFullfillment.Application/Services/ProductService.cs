@@ -23,7 +23,7 @@ namespace OrderFullfillment.Application.Services
         public async Task<Product> Add(Product product)
         {
             _repository.Add(product);
-            await UnitOfWork.CommitAsync();
+            await UnitOfWork.SaveChangeAsync();
             return product;
         }
         
@@ -33,7 +33,7 @@ namespace OrderFullfillment.Application.Services
             if (product != null)
             {
                 _repository.Delete(product);
-                await UnitOfWork.CommitAsync();
+                await UnitOfWork.SaveChangeAsync();
             }
         }
     }

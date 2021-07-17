@@ -33,12 +33,12 @@ namespace OrderFullfillment.Application.Services
                 case OrderType.Company:
                     var companyInvoice = new CompanyInvoice(order, 111);
                     _companyInvoice.Add(companyInvoice);
-                    await UnitOfWork.CommitAsync();
+                    await UnitOfWork.SaveChangeAsync();
                     return companyInvoice.Id;
                 case OrderType.Personal:
                     var personalInvoice = new PersonalInvoice(order);
                     _personalInvoice.Add(personalInvoice);
-                    await UnitOfWork.CommitAsync();
+                    await UnitOfWork.SaveChangeAsync();
                     return personalInvoice.Id;
                 default:
                     throw new Exception("OrderType not exist");
