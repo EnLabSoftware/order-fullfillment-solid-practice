@@ -11,12 +11,11 @@ namespace OrderFullfillment.Application.Services
 {
     public class InvoiceService : BaseService, IInvoiceService
     {
-
         private readonly IRepository<Order> _order;
         private readonly IRepository<CompanyInvoice> _companyInvoice;
         private readonly IRepository<PersonalInvoice> _personalInvoice;
 
-        public InvoiceService(IUnitOfWork unitOfWork, 
+        public InvoiceService(IUnitOfWork unitOfWork,
             IRepository<CompanyInvoice> companyInvoice,
             IRepository<PersonalInvoice> personalInvoice,
             IRepository<Order> order) : base(unitOfWork)
@@ -44,21 +43,12 @@ namespace OrderFullfillment.Application.Services
                     throw new Exception("OrderType not exist");
             }
         }
-        
+
         public async Task Sign(int orderId)
         {
             var order = await _order.GetAsync(orderId);
             var invoiceId = order.InvoiceId.GetValueOrDefault();
-            InvoiceBase invoice = null;
-            switch (order.Type)
-            {
-                case OrderType.Company:
-                    invoice = await _companyInvoice.GetAsync(invoiceId);
-                    break;
-                case OrderType.Personal:
-                    invoice = await _personalInvoice.GetAsync(invoiceId);
-                    break;
-            }
+            var invoice = await GetInvoiceByType(order, invoiceId);
             invoice?.Sign();
         }
 
@@ -66,17 +56,21 @@ namespace OrderFullfillment.Application.Services
         {
             var order = await _order.GetAsync(orderId);
             var invoiceId = order.InvoiceId.GetValueOrDefault();
-            InvoiceBase invoice = null;
+            var invoice = await GetInvoiceByType(order, invoiceId);
+            return invoice?.Export();
+        }
+
+        private async Task<InvoiceBase> GetInvoiceByType(Order order, int invoiceId)
+        {
             switch (order.Type)
             {
                 case OrderType.Company:
-                    invoice = await _companyInvoice.GetAsync(invoiceId);
-                    break;
+                    return await _companyInvoice.GetAsync(invoiceId);
                 case OrderType.Personal:
-                    invoice = await _personalInvoice.GetAsync(invoiceId);
-                    break;
+                    return await _personalInvoice.GetAsync(invoiceId);
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            return invoice?.Export();
         }
     }
 }
