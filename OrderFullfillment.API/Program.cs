@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using OrderFullfillment.API;
 
-namespace OrderFullfillment
+namespace OrderFullfillment.API
 {
     public class Program
     {
