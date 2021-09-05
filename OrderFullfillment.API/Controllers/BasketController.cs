@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OrderFullfillment.Application.Services;
 using OrderFullfillment.Application.Services.Interfaces;
 using OrderFullfillment.Entity.Entities.Basket;
 
@@ -11,9 +12,9 @@ namespace OrderFullfillment.API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly ILogger<BasketController> _logger;
-        private readonly IBasketService _basketService;
+        private readonly BasketService _basketService;
 
-        public BasketController(ILogger<BasketController> logger, IBasketService basketService)
+        public BasketController(ILogger<BasketController> logger, BasketService basketService)
         {
             _logger = logger;
             _basketService = basketService;

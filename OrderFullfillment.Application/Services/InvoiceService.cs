@@ -27,21 +27,23 @@ namespace OrderFullfillment.Application.Services
 
         public async Task<int> CreateInvoice(Order order)
         {
+            InvoiceBase invoice;
             switch (order.Type)
             {
                 case OrderType.Company:
-                    var companyInvoice = new CompanyInvoice(order, 111);
-                    _companyInvoice.Add(companyInvoice);
-                    await UnitOfWork.SaveChangeAsync();
-                    return companyInvoice.Id;
+                    invoice = new CompanyInvoice(order, 111);
+                    _companyInvoice.Add((CompanyInvoice) invoice);
+                    break;
                 case OrderType.Personal:
-                    var personalInvoice = new PersonalInvoice(order);
-                    _personalInvoice.Add(personalInvoice);
-                    await UnitOfWork.SaveChangeAsync();
-                    return personalInvoice.Id;
+                    invoice = new PersonalInvoice(order);
+                    _personalInvoice.Add((PersonalInvoice) invoice);
+                    break;
                 default:
                     throw new Exception("OrderType not exist");
             }
+
+            await UnitOfWork.SaveChangeAsync();
+            return invoice.Id;
         }
 
         public async Task Sign(int orderId)
@@ -51,6 +53,28 @@ namespace OrderFullfillment.Application.Services
             var invoice = await GetInvoiceByType(order, invoiceId);
             invoice?.Sign();
         }
+
+        /// <summary>
+        /// Wrong example
+        /// </summary>
+        // public async Task Sign(int orderId)
+        // {
+        //     var order = await _order.GetAsync(orderId);
+        //     var invoiceId = order.InvoiceId.GetValueOrDefault();
+        //     var invoice = await GetInvoiceByType(order, invoiceId);
+        //
+        //     switch (order.Type)
+        //     {
+        //         case OrderType.Company:
+        //             //... sign company invoice
+        //             break;
+        //         case OrderType.Personal:
+        //             //... sign personal invoice
+        //             break;
+        //         default:
+        //             throw new ArgumentOutOfRangeException();
+        //     }
+        // }
 
         public async Task<string> Export(int orderId)
         {
