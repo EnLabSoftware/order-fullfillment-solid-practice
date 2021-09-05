@@ -61,7 +61,7 @@ namespace OrderFullfillment.Application.Services
             }
         }
 
-        public async Task MarkedAsResolved(int basketId)
+        public async Task MarkAsResolved(int basketId)
         {
             var basket = await _basketRepo.GetAsync(basketId);
             basket.IsCheckedOut = true;

@@ -9,6 +9,6 @@ namespace OrderFullfillment.Application.Services.Interfaces
         public Task<Basket> Create(int userId);
         public Task AddItem(int basketId, int productId);
         public Task RemoveItem(int basketId, int productId);
-        public Task MarkedAsResolved(int basketId);
+        public Task MarkAsResolved(int basketId);
     }
 }

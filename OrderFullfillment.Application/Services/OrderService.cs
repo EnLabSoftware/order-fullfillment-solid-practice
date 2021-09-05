@@ -46,7 +46,7 @@ namespace OrderFullfillment.Application.Services
             await UnitOfWork.ExecuteTransactionAsync(async () =>
             {
                 _orderRepo.Add(order);
-                await _basketService.MarkedAsResolved(orderInfo.BasketId);
+                await _basketService.MarkAsResolved(orderInfo.BasketId);
                 return await UnitOfWork.SaveChangeAsync();
             });
             return order;
